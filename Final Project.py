@@ -11,7 +11,7 @@ class LoginFrame(Frame):
 
         root.title("Please enter your Username and Password")
         root.geometry("350x100")
-        root.lift()
+        root.attributes("-topmost", True)
         self.label_1 = Label(self, text="Username")
         self.label_2 = Label(self, text="Password")
 
