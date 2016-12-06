@@ -28,6 +28,8 @@ def searchCourse(college, depart, course, section):
         seats = int(driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text)
     elif int(driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text) > -1:
         seats = int(driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text)
+    elif int(driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
+        seats = int(driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text
 
     if seats > 0:
         print("Good news the class is open!")
