@@ -11,7 +11,7 @@ class LoginFrame(Frame):
 
         root.title("Please enter your Username and Password")
         root.geometry("350x100")
-        root.attributes("-topmost", True)
+        root.attributes("-topmost", True)                   # Puts the GUI Window above all other Windows
         self.label_1 = Label(self, text="Username")
         self.label_2 = Label(self, text="Password")
 
