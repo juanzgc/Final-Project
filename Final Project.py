@@ -53,10 +53,18 @@ class LoginFrame(Frame):
         self.driver.find_element_by_name("Section").send_keys(Section)
         button = self.driver.find_element_by_xpath("//input[@type='button']")
         button.click()
-        if self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text == "0":
-            print("It is closed")
+
+        if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text) > -1:
+            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text)
+        elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text) > -1:
+            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text)
+        elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
+            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text)
+
+        if seats>0:
+            print("Good news the class is open!")
         else:
-            print("It is open")
+            print("It is closed")
 
 root = Tk()
 lf = LoginFrame(root)
