@@ -40,7 +40,7 @@ class LoginFrame(Frame):
         find_password = self.driver.find_element_by_id("password")
         find_password.send_keys(password)
         find_password.send_keys(Keys.ENTER)
-        self.driver.find_element_by_xpath("/html/body/table[3]/tbody/tr[16]/td/a[1]").click()  # Changes depending on class
+        self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1481040756?ModuleName=reg/option/_start.pl&ViewSem=Spring%202017&KeySem=20174")  # Changes depending on class
         Plan_link = self.driver.find_element_by_partial_link_text("Plan").click()
         Add_link = self.driver.find_element_by_partial_link_text("Add").click()
 
