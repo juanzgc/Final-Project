@@ -31,7 +31,7 @@ class LoginFrame(Frame):
         username = self.entry_1.get()
         password = self.entry_2.get()
 
-        self.driver = webdriver.Chrome()
+        self.driver = webdriver.Chrome("/Users/chasejamieson/Downloads/chromedriver")
         self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1480436841?ModuleName=menu.pl&NewMenu=Academics")
 
         continue_link = self.driver.find_element_by_partial_link_text('Registration').click()
@@ -43,6 +43,7 @@ class LoginFrame(Frame):
         self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1481040756?ModuleName=reg/option/_start.pl&ViewSem=Spring%202017&KeySem=20174")  # Changes depending on class
         Plan_link = self.driver.find_element_by_partial_link_text("Plan").click()
         Add_link = self.driver.find_element_by_partial_link_text("Add").click()
+        lf.search("ENG", "ek", "128", "a1")
 
     def search(self, College, Dept, Course, Section):
 
@@ -69,6 +70,5 @@ class LoginFrame(Frame):
 root = Tk()
 lf = LoginFrame(root)
 root.mainloop()
-lf.search("ENG", "ek", "128", "a1")
 
 #
