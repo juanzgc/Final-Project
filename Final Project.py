@@ -9,6 +9,8 @@ class LoginFrame(Frame):
     def __init__(self, master):
         super().__init__(master)
 
+        root.title("Please enter your Username and Password")
+        root.geometry("350x100")
         self.label_1 = Label(self, text="Username")
         self.label_2 = Label(self, text="Password")
 
