@@ -39,44 +39,44 @@ class LoginFrame(Frame):
         self.driver = webdriver.Chrome()                                # This depends on your browser, and whether
                                                                         # or not you have the web driver installed
 
-        self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1480436841?ModuleName=menu.pl&NewMenu=Academics")
+        self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1480436841?ModuleName=menu.pl&NewMenu=Academics")    # Opens the academics studentlink in chrome
 
-        continue_link = self.driver.find_element_by_partial_link_text('Registration').click()
-        find_username = self.driver.find_element_by_id("username")
-        find_username.send_keys(username)
-        find_password = self.driver.find_element_by_id("password")
-        find_password.send_keys(password)
-        find_password.send_keys(Keys.ENTER)
-        self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1481040756?ModuleName=reg/option/_start.pl&ViewSem=Spring%202017&KeySem=20174")  # Changes depending on class
-        Plan_link = self.driver.find_element_by_partial_link_text("Plan").click()
-        Add_link = self.driver.find_element_by_partial_link_text("Add").click()
-        lf.search("ENG", "ek", "128", "a1")
+        continue_link = self.driver.find_element_by_partial_link_text('Registration').click()   # clicks registration
+        find_username = self.driver.find_element_by_id("username")  # Finds username textbox in html
+        find_username.send_keys(username)   # Enters your username in the textbox
+        find_password = self.driver.find_element_by_id("password")  # Finds the password textbox
+        find_password.send_keys(password)   # Enters the password into the textbox
+        find_password.send_keys(Keys.ENTER) # Simulates hitting enter
+        self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1481040756?ModuleName=reg/option/_start.pl&ViewSem=Spring%202017&KeySem=20174")  # Opens next or current semester registration
+        Plan_link = self.driver.find_element_by_partial_link_text("Plan").click()   # Clicks the planner
+        Add_link = self.driver.find_element_by_partial_link_text("Add").click() # Clicks add class to planner
+        lf.search("CAS", "CH", "102", "a3") # Calls the search function
 
 
     def search(self, College, Dept, Course, Section):
 
-        select = Select(self.driver.find_element_by_name("College"))
-        select.select_by_visible_text(College)
-        self.driver.find_element_by_name("Dept").send_keys(Dept)
-        self.driver.find_element_by_name("Course").send_keys(Course)
-        self.driver.find_element_by_name("Section").send_keys(Section)
-        button = self.driver.find_element_by_xpath("//input[@type='button']")
-        button.click()
+        select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
+        select.select_by_visible_text(College)  # selects a certain college
+        self.driver.find_element_by_name("Dept").send_keys(Dept)    # Enters department into the department textbox
+        self.driver.find_element_by_name("Course").send_keys(Course)    # Enters course into the course textbox
+        self.driver.find_element_by_name("Section").send_keys(Section)  # Enters the section into the section textbox
+        button = self.driver.find_element_by_xpath("//input[@type='button']")   # Finds the go button
+        button.click()  # Clicks the go button
 
-        if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text) > -1:
+        if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text) > -1: #  Checks the possible html formats to find the one that returns an integer and converts the number into an int
             seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text)
         elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text) > -1:
             seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text)
         elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
             seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text)
 
-        if seats>0:
+        if seats > 0:   # Compares the seat number to see if its greater than 0 or not
             print("Good news the class is open!")
         else:
             print("Unfortunately that class is full")
 
-        self.driver.quit()
-        quit()
+        self.driver.quit()  # Quits the browser
+        quit()  # Quites the program
 
 
 root = Tk()
