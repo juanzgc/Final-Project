@@ -97,7 +97,7 @@ class LoginFrame(Frame):
 
         if seats > 0:   # Compares the seat number to see if its greater than 0 or not
             print("Good news the class is open!")
-        else:
+        elif seats == 0:
             print("Unfortunately that class is full")
 
         self.driver.quit()  # Quits the browser
