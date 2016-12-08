@@ -50,10 +50,12 @@ class LoginFrame(Frame):
         self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1481040756?ModuleName=reg/option/_start.pl&ViewSem=Spring%202017&KeySem=20174")  # Opens next or current semester registration
         Plan_link = self.driver.find_element_by_partial_link_text("Plan").click()   # Clicks the planner
         Add_link = self.driver.find_element_by_partial_link_text("Add").click() # Clicks add class to planner
-        lf.search("CAS", "CH", "102", "a3") # Calls the search function
+        lf.search("CAS", "MA", "225", "B1") # Calls the search function
 
 
     def search(self, College, Dept, Course, Section):
+
+        seats = -1
 
         select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
         select.select_by_visible_text(College)  # selects a certain college
@@ -63,15 +65,20 @@ class LoginFrame(Frame):
         button = self.driver.find_element_by_xpath("//input[@type='button']")   # Finds the go button
         button.click()  # Clicks the go button
 
-        if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text) > -1: #  Checks the possible html formats to find the one that returns an integer and converts the number into an int
-            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text)
-        elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text) > -1:
-            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text)
-        elif int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
-            seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text)
+        try:
+            if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text) > -1: #  Checks the possible html formats to find the one that returns an integer and converts the number into an int
+                seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[2]/td[6]").text)
+        except ValueError:
+            if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text) > -1:
+                seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[3]/td[6]").text)
+        except ValueError:
+            if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
+                seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text)
 
         if seats > 0:   # Compares the seat number to see if its greater than 0 or not
             print("Good news the class is open!")
+        elif seats == -1:
+            print("Unfortunately there was an error")
         else:
             print("Unfortunately that class is full")
 
