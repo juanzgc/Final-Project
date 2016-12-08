@@ -54,8 +54,6 @@ class LoginFrame(Frame):
 
     def search(self, College, Dept, Course, Section):
 
-        seats = -1
-
         select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
         select.select_by_visible_text(College)  # selects a certain college
         self.driver.find_element_by_name("Dept").send_keys(Dept)    # Enters department into the department textbox
