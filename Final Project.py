@@ -38,6 +38,7 @@ class LoginFrame(Frame):
 
         self.driver = webdriver.Chrome()                                # This depends on your browser, and whether
                                                                         # or not you have the web driver installed
+
         self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1480436841?ModuleName=menu.pl&NewMenu=Academics")
 
         continue_link = self.driver.find_element_by_partial_link_text('Registration').click()
