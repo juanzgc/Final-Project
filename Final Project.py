@@ -73,7 +73,6 @@ class LoginFrame(Frame):
         dept = self.entry_4.get()
         course = self.entry_5.get()
         section = self.entry_6.get()
-        seats = -1
 
         select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
         select.select_by_visible_text(college)  # selects a certain college
@@ -92,11 +91,11 @@ class LoginFrame(Frame):
         except ValueError:
             if int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text) > -1:
                 seats = int(self.driver.find_element_by_xpath("/html/body/form/table/tbody/tr[4]/td[6]").text)
+        except ValueError:
+            print("Unfortunately there was an error, please try again")
 
         if seats > 0:   # Compares the seat number to see if its greater than 0 or not
             print("Good news the class is open!")
-        elif seats == -1:
-            print("Unfortunately there was an error")
         else:
             print("Unfortunately that class is full")
 
