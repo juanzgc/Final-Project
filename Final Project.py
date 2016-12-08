@@ -73,7 +73,6 @@ class LoginFrame(Frame):
         dept = self.entry_4.get()
         course = self.entry_5.get()
         section = self.entry_6.get()
-        seats = -1
 
         select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
         select.select_by_visible_text(college)  # selects a certain college
