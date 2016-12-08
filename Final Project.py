@@ -101,7 +101,7 @@ class LoginFrame(Frame):
             print("Unfortunately that class is full")
 
         self.driver.quit()  # Quits the browser
-        quit()  # Quites the program
+        quit()  # Quits the program
 
 
 root = Tk()
