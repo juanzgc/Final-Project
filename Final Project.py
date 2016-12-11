@@ -14,20 +14,20 @@ class LoginFrame(Frame):
         root.attributes("-topmost", True)  # Puts the GUI Window above all other Windows
         self.label_1 = Label(self, text="Username")
         self.label_2 = Label(self, text="Password")         # Names your label
-        self.label_3 = Label(self, text="College")          #
-        self.label_4 = Label(self, text="Dept")
+        self.label_3 = Label(self, text="College")          # Self.label (Self is similar to this in java)
+        self.label_4 = Label(self, text="Dept")             # It allows you to call label in the LoginFrame class
         self.label_5 = Label(self, text="Course")
         self.label_6 = Label(self, text="Section")
 
         self.entry_1 = Entry(self)
-        self.entry_2 = Entry(self, show="*")
-        self.entry_3 = Entry(self)
-        self.entry_4 = Entry(self)
+        self.entry_2 = Entry(self, show="*")                # Entry makes the type of entry you want
+        self.entry_3 = Entry(self)                          # The only difference is that show="*"
+        self.entry_4 = Entry(self)                          # show="*" hides the password so other people around you cant see it
         self.entry_5 = Entry(self)
         self.entry_6 = Entry(self)
 
-        self.label_1.grid(row=0, sticky=E)
-        self.label_2.grid(row=1, sticky=E)
+        self.label_1.grid(row=0, sticky=E)                  # Grid allows you to choose where in the frame to put the label and entry
+        self.label_2.grid(row=1, sticky=E)                  # Row is the only one that changes
         self.label_3.grid(row=2, sticky=E)
         self.label_4.grid(row=3, sticky=E)
         self.label_5.grid(row=4, sticky=E)
@@ -39,20 +39,20 @@ class LoginFrame(Frame):
         self.entry_5.grid(row=4, column=1)
         self.entry_6.grid(row=5, column=1)
 
-        self.logbtn = Button(self, text="Login", command=self._login_btn_clickked)
-        self.logbtn.grid(columnspan=2)
+        self.logbtn = Button(self, text="Login", command=self._login_btn_clickked)      # This creates the button and calls _login_btn_clicked
+        self.logbtn.grid(columnspan=2)                                                  # once the user clicks the button
 
-        self.pack()
+        self.pack()                     # This packs everything into rows or columns
 
 
 
     def _login_btn_clickked(self):
 
-        username = self.entry_1.get()
-        password = self.entry_2.get()
+        username = self.entry_1.get()               # Makes the value of username = what the user entered
+        password = self.entry_2.get()               # Makes the value of password = what the user entered
 
-        self.driver = webdriver.Chrome()                                # This depends on your browser, and whether
-                                                                        # or not you have the web driver installed
+        self.driver = webdriver.Chrome()            # This depends on your browser, and whether
+                                                    # or not you have the web driver installed
 
         self.driver.get("https://www.bu.edu/link/bin/uiscgi_studentlink.pl/1480436841?ModuleName=menu.pl&NewMenu=Academics")    # Opens the academics studentlink in chrome
 
@@ -69,10 +69,10 @@ class LoginFrame(Frame):
 
 
     def search(self):
-        college = self.entry_3.get().upper()
-        dept = self.entry_4.get()
-        course = self.entry_5.get()
-        section = self.entry_6.get()
+        college = self.entry_3.get().upper()            # College = what the user entered, we do upper() to capitalize
+        dept = self.entry_4.get()                       # Dept = what the user entered
+        course = self.entry_5.get()                     # Course = what the user entered
+        section = self.entry_6.get()                    # Section = what the user entered
 
         select = Select(self.driver.find_element_by_name("College"))    # Finds the drop down box
         select.select_by_visible_text(college)  # selects a certain college
@@ -99,8 +99,8 @@ class LoginFrame(Frame):
         elif seats == 0:
             print("Unfortunately that class is full")
 
-        self.driver.quit()  # Quits the browser
-        quit()  # Quits the program
+        self.driver.quit()  # Quits the browser once code is done
+        quit()  # Quits the program once code is done
 
 
 root = Tk()
