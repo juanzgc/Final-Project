@@ -9,12 +9,12 @@ class LoginFrame(Frame):
     def __init__(self, master):
         super().__init__(master)
 
-        root.title("Please enter your Username and Password")
-        root.geometry("400x200")
+        root.title("Please enter your Username and Password")       # Makes the title of the frame
+        root.geometry("400x200")            # Makes the size of the frame
         root.attributes("-topmost", True)  # Puts the GUI Window above all other Windows
         self.label_1 = Label(self, text="Username")
-        self.label_2 = Label(self, text="Password")
-        self.label_3 = Label(self, text="College")
+        self.label_2 = Label(self, text="Password")         # Names your label
+        self.label_3 = Label(self, text="College")          #
         self.label_4 = Label(self, text="Dept")
         self.label_5 = Label(self, text="Course")
         self.label_6 = Label(self, text="Section")
